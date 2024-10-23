@@ -20,6 +20,7 @@
             android:id="@+id/left_chat_text_view"
             android:textSize="18sp"
             android:gravity="start"
+            android:textIsSelectable="true"
             />
     </LinearLayout>
     <LinearLayout

@@ -22,6 +22,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sendButton: ImageButton
     private val messageList = mutableListOf<Message>()
     private lateinit var messageAdapter: MessageAdapter
-    private val client = OkHttpClient()
+    private val client = OkHttpClient.Builder().readTimeout(60,TimeUnit.SECONDS).build()
     private val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 //           .url("https://api.openai.com/v1/completions")
 //           .header("Authorization", "Bearer Bearer YOUR_SECURE_API_KEY")
             .url("https://api.openai.com/v1/chat/completions")  // Use Chat Completions endpoint
-            .header("Authorization", "Bearer Bearer YOUR_SECURE_API_KEY")  // Secure your API key properly
+            .header("Authorization", "Bearer ")  // Secure your API key properly
             .post(body)
             .build()
 
